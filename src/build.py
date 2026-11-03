@@ -5,6 +5,7 @@ Usage (from the project folder):
 
 The output is written to the project root as:
     Branch Surprise Visit Checklist.html
+    index.html  (same file, used by Vercel and static hosts)
 """
 
 from pathlib import Path
@@ -13,6 +14,7 @@ import re
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUTPUT = ROOT / "Branch Surprise Visit Checklist.html"
+VERCEL_INDEX = ROOT / "index.html"
 
 
 def inline_script(source: str) -> str:
@@ -55,9 +57,11 @@ def main() -> None:
         html = html.replace(original, replacement, 1)
 
     OUTPUT.write_text(html, encoding="utf-8")
+    VERCEL_INDEX.write_text(html, encoding="utf-8")
     size_kb = OUTPUT.stat().st_size / 1024
     print(f"Built {OUTPUT.name} ({size_kb:.0f} KB)")
-    print("Open it in a browser; no server or internet connection is needed.")
+    print(f"Built {VERCEL_INDEX.name} for the repository root / Vercel")
+    print("Open either HTML file in a browser; no server or internet connection is needed.")
 
 
 if __name__ == "__main__":

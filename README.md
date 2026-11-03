@@ -10,7 +10,9 @@ Each checkpoint has Yes/No buttons, a free-text remark, and up to 10 photos. Ans
 
 ## Use it
 
-Open **`Branch Surprise Visit Checklist.html`** in a browser (Chrome or Edge recommended). No server, install, or internet connection is needed. Choose a branch from the reference list to fill its category and address, work through the tabs, then click **Download PDF**. The PDF is generated in the browser and saved to your Downloads folder automatically, without opening a print dialog.
+Open **`Branch Surprise Visit Checklist.html`** or the root **`index.html`** in a browser (Chrome or Edge recommended). No server, install, or internet connection is needed. Choose a branch from the reference list to fill its category and address, work through the tabs, then click **Download PDF**. The PDF is generated in the browser and saved to your Downloads folder automatically, without opening a print dialog.
+
+The root `index.html` is the Vercel entry point; the friendly-named HTML is the same file for local use.
 
 Everything stays on the computer running the browser. Clearing site data for the file, or using **Clear**, removes the saved visit and photos.
 
@@ -25,7 +27,7 @@ The ready-to-use HTML is generated from the files in `src/`:
 | `src/styles.css` | Screen styles and the A4 report styles |
 | `src/app.js` | Answers, remarks, photos, local saving, branch picker, print pagination and PDF download |
 | `src/vendor/` | Offline PDF libraries (`html-to-image` and `jsPDF`) and their licences |
-| `src/build.py` | Inlines the sources into the single root HTML file |
+| `src/build.py` | Inlines the sources into the root HTML files (including `index.html` for Vercel) |
 
 After editing a source file, rebuild the single HTML from the project folder:
 
