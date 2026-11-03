@@ -1,10 +1,57 @@
 <!doctype html>
+<!--
+  Bundled open-source libraries (MIT):
+
+  html-to-image 1.11.13
+  Copyright (c) 2017-2025 W.Y.
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+  jsPDF 2.5.2
+  Copyright (c) 2010-2021 James Hall, https://github.com/MrRio/jsPDF
+  Copyright (c) 2015-2021 yWorks GmbH, https://www.yworks.com/
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Editable branch surprise visit checklist with yes or no findings, remarks and photo evidence, downloadable as an A4 PDF report.">
-  <title>Branch Surprise Visit Checklist – SBI General Insurance</title>
+  <title>Branch Surprise Visit Checklist</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b4f8a'/%3E%3Cpath d='M14 44h36M20 40V28m8 12V28m8 12V28m8 12V28M12 24l20-11 20 11z' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <style>
 /* Hallmark · v2.0.0 · scope: app screen · genre: modern-minimal · theme: custom (document ledger)
@@ -2000,22 +2047,6 @@ a {
   color: var(--on-brand);
 }
 
-.cover-brandline {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10mm;
-  margin-bottom: 13mm;
-  color: var(--on-brand-muted);
-  font-size: 7pt;
-}
-
-.cover-brandline strong {
-  color: var(--on-brand);
-  font-size: 8.2pt;
-  font-weight: 700;
-}
-
 .cover-kicker {
   margin-bottom: 2.2mm;
   color: var(--on-brand-muted);
@@ -2081,123 +2112,6 @@ a {
   font-weight: 600;
   line-height: 1.35;
   overflow-wrap: break-word;
-}
-
-.cover-stats {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin-top: 7mm;
-  border-top: 0.6pt solid var(--line);
-  border-bottom: 0.6pt solid var(--line);
-}
-
-.cover-stat {
-  padding: 4.2mm 0 3.8mm;
-  border-left: 0.5pt solid var(--line);
-}
-
-.cover-stat:first-child {
-  border-left: 0;
-  padding-left: 0;
-}
-
-.cover-stat:not(:first-child) {
-  padding-left: 5mm;
-}
-
-.cover-stat strong {
-  display: block;
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 19pt;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.cover-stat span {
-  display: block;
-  margin-top: 1.3mm;
-  color: var(--muted);
-  font-size: 6.6pt;
-}
-
-.cover-summary-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8mm;
-  margin-top: 7mm;
-  margin-bottom: 2.4mm;
-}
-
-.cover-summary-head h2 {
-  margin: 0;
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 12.5pt;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-.cover-summary-head p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 6.6pt;
-}
-
-.cover-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 7.4pt;
-  font-variant-numeric: tabular-nums;
-}
-
-.cover-table th {
-  padding: 1.7mm 1.6mm;
-  border-top: 0.7pt solid var(--line-dark);
-  border-bottom: 0.5pt solid var(--line-strong);
-  color: var(--muted);
-  font-size: 6.4pt;
-  font-weight: 600;
-  text-align: right;
-}
-
-.cover-table th:first-child {
-  padding-left: 0;
-  text-align: left;
-}
-
-.cover-table td {
-  padding: 2mm 1.6mm;
-  border-bottom: 0.5pt solid var(--line);
-  color: var(--ink-2);
-  text-align: right;
-}
-
-.cover-table td:first-child {
-  padding-left: 0;
-  color: var(--ink);
-  font-weight: 600;
-  text-align: left;
-}
-
-.cover-table tr:last-child td {
-  border-top: 0.7pt solid var(--line-dark);
-  border-bottom: 0;
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.cover-table .cover-num-yes {
-  color: var(--yes);
-  font-weight: 700;
-}
-
-.cover-table .cover-num-no {
-  color: var(--no);
-  font-weight: 700;
 }
 
 .cover-signoff {
@@ -2628,8 +2542,7 @@ a {
       <div class="brand">
         <span class="brand-rule" aria-hidden="true"></span>
         <div class="brand-text">
-          <span class="brand-name">SBI General Insurance</span>
-          <span class="brand-sub">Branch operations checklist</span>
+          <span class="brand-name">Branch operations checklist</span>
         </div>
       </div>
       <div class="topbar-actions">
@@ -6060,28 +5973,10 @@ window.__CHECKLIST_DATA__ = {
   }
 
   function makeCoverPage() {
-    const overall = overallStats();
-    const summaryRows = DATA.sheets
-      .map((sheet) => {
-        const stats = sheetStats(sheet);
-        return `<tr>
-          <td>${escapeHtml(sheet.title)}</td>
-          <td>${stats.answered} / ${sheet.total}</td>
-          <td class="cover-num-yes">${stats.yes}</td>
-          <td class="cover-num-no">${stats.no}</td>
-          <td>${stats.pending}</td>
-          <td>${stats.photos}</td>
-        </tr>`;
-      })
-      .join("");
     const page = document.createElement("div");
     page.className = "print-page cover-page";
     page.innerHTML = `
       <div class="cover-band">
-        <div class="cover-brandline">
-          <strong>SBI General Insurance</strong>
-          <span>Branch operations</span>
-        </div>
         <p class="cover-kicker">Branch surprise visit</p>
         <h1 class="cover-title">${escapeHtml(branchLabel())}</h1>
         <p class="cover-sub">Compliance checklist report</p>
@@ -6094,40 +5989,6 @@ window.__CHECKLIST_DATA__ = {
           ${coverMeta("Auditor", state.auditor)}
           ${coverMeta("Branch manager", state.manager)}
         </div>
-        <div class="cover-stats">
-          <div class="cover-stat"><strong>${overall.total}</strong><span>checkpoints</span></div>
-          <div class="cover-stat"><strong>${overall.yes}</strong><span>marked yes</span></div>
-          <div class="cover-stat"><strong>${overall.no}</strong><span>marked no</span></div>
-          <div class="cover-stat"><strong>${overall.pending}</strong><span>pending</span></div>
-          <div class="cover-stat"><strong>${overall.photos}</strong><span>photos</span></div>
-        </div>
-        <div class="cover-summary-head">
-          <h2>Checklist summary</h2>
-          <p>${overall.answered} of ${overall.total} checkpoints answered</p>
-        </div>
-        <table class="cover-table">
-          <thead>
-            <tr>
-              <th>Checklist</th>
-              <th>Answered</th>
-              <th>Yes</th>
-              <th>No</th>
-              <th>Pending</th>
-              <th>Photos</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${summaryRows}
-            <tr>
-              <td>Total</td>
-              <td>${overall.answered} / ${overall.total}</td>
-              <td>${overall.yes}</td>
-              <td>${overall.no}</td>
-              <td>${overall.pending}</td>
-              <td>${overall.photos}</td>
-            </tr>
-          </tbody>
-        </table>
         <div class="cover-signoff">
           <h2>Sign-off</h2>
           <p class="cover-note">Photo evidence is reproduced beside the relevant checkpoint. Every item is printed, whether answered, marked no, or still pending.</p>
@@ -6250,8 +6111,7 @@ window.__CHECKLIST_DATA__ = {
     page.innerHTML = `
       <div class="pp-run">
         <div class="pp-run-brand">
-          <strong>SBI General Insurance</strong>
-          <span>Branch surprise visit</span>
+          <strong>Branch surprise visit</strong>
         </div>
         <span class="pp-run-branch">${escapeHtml(branchLabel())}</span>
       </div>
@@ -6390,7 +6250,7 @@ window.__CHECKLIST_DATA__ = {
       pdf.setProperties({
         title: pdfFilename().replace(/\.pdf$/i, ""),
         subject: "Branch surprise visit compliance checklist",
-        author: state.auditor || "SBI General Insurance",
+        author: state.auditor || "Branch Surprise Visit Checklist",
         creator: "Branch Surprise Visit Checklist",
       });
 
