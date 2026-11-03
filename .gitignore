@@ -1,0 +1,11 @@
+# Local development artifacts
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+
+# OS and editor files
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
