@@ -1069,6 +1069,29 @@ a {
   text-transform: uppercase;
 }
 
+.item-expiry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+}
+
+.item-expiry-label {
+  color: var(--muted);
+  font-size: 10.5px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.item-expiry .expiry-input {
+  width: 168px;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 6px 9px;
+  font-size: 12.5px;
+}
+
 .item-tags {
   display: flex;
   flex-wrap: wrap;
@@ -2409,6 +2432,28 @@ a {
   font-size: 5.8pt;
   font-weight: 600;
   line-height: 1.35;
+}
+
+.pp-expiry {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1.5mm;
+  margin-bottom: 1.6mm;
+  padding: 0.7mm 1.5mm;
+  border: 0.4pt solid var(--line-strong);
+  border-radius: 1mm;
+  background: var(--surface-2);
+  font-size: 6.8pt;
+}
+
+.pp-expiry span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.pp-expiry strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .pp-req {
@@ -5550,6 +5595,27 @@ window.__CHECKLIST_DATA__ = {
     });
   });
 
+  // Operations rows are sub-checks of merged process groups in the workbook,
+  // so number them parent.child (1.1, 1.2, 2.1, ...) instead of 1, 2, 3.
+  const opsSheet = sheetById.get("ops");
+  if (opsSheet) {
+    let parentNumber = 0;
+    let childNumber = 0;
+    let previousGroup = null;
+    opsSheet.sections.forEach((section) => {
+      section.items.forEach((item) => {
+        const group = item.context || `item:${item.id}`;
+        if (group !== previousGroup) {
+          parentNumber += 1;
+          childNumber = 0;
+          previousGroup = group;
+        }
+        childNumber += 1;
+        item.n = `${parentNumber}.${childNumber}`;
+      });
+    });
+  }
+
   const branchByName = new Map(DATA.branches.map((branch) => [branch.name, branch]));
 
   let state = defaultState();
@@ -5578,6 +5644,7 @@ window.__CHECKLIST_DATA__ = {
       manager: "",
       answers: {},
       remarks: {},
+      expiry: {},
       photos: {},
       savedAt: 0,
     };
@@ -5617,6 +5684,21 @@ window.__CHECKLIST_DATA__ = {
     return new Intl.DateTimeFormat("en-GB", {
       day: "numeric",
       month: "long",
+      year: "numeric",
+    }).format(date);
+  }
+
+  function requiresExpiry(item) {
+    return Boolean(item && /date of expiry to be recorded/i.test(String(item.detail || "")));
+  }
+
+  function formatExpiryDate(value) {
+    if (!value) return "";
+    const date = new Date(`${value}T12:00:00`);
+    if (Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit",
+      month: "short",
       year: "numeric",
     }).format(date);
   }
@@ -5699,6 +5781,7 @@ window.__CHECKLIST_DATA__ = {
         manager: state.manager,
         answers: state.answers,
         remarks: state.remarks,
+        expiry: state.expiry,
         active: activeSheetId,
         savedAt: Date.now(),
       };
@@ -5746,6 +5829,14 @@ window.__CHECKLIST_DATA__ = {
         Object.entries(parsed.remarks).forEach(([id, value]) => {
           if (itemById.has(id) && typeof value === "string") {
             next.remarks[id] = value;
+          }
+        });
+      }
+      next.expiry = {};
+      if (parsed.expiry && typeof parsed.expiry === "object") {
+        Object.entries(parsed.expiry).forEach(([id, value]) => {
+          if (itemById.has(id) && typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            next.expiry[id] = value;
           }
         });
       }
@@ -5967,6 +6058,7 @@ window.__CHECKLIST_DATA__ = {
             const answer = state.answers[item.id] || "";
             const textId = `q-${item.id}`;
             const remarkId = `r-${item.id}`;
+            const expiryId = `e-${item.id}`;
             return `
               <article class="item" data-id="${escapeHtml(item.id)}">
                 <div class="item-num" aria-hidden="true">${String(item.n).padStart(2, "0")}</div>
@@ -5981,6 +6073,16 @@ window.__CHECKLIST_DATA__ = {
                       : ""
                   }
                   <div class="item-tags">${itemTagsHtml(item)}</div>
+                  ${
+                    requiresExpiry(item)
+                      ? `<div class="item-expiry">
+                    <label class="item-expiry-label" for="${expiryId}">Date of expiry</label>
+                    <input class="input expiry-input" type="date" id="${expiryId}" data-expiry-id="${escapeHtml(
+                        item.id
+                      )}" value="${escapeHtml(state.expiry[item.id] || "")}">
+                  </div>`
+                      : ""
+                  }
                 </div>
                 <div class="answer" role="group" aria-labelledby="${textId}">
                   <button type="button" class="mark mark-yes" data-answer="yes" data-item-id="${escapeHtml(
@@ -6162,6 +6264,13 @@ window.__CHECKLIST_DATA__ = {
     if (!itemById.has(itemId)) return;
     if (value) state.remarks[itemId] = value;
     else delete state.remarks[itemId];
+    scheduleSave();
+  }
+
+  function setExpiry(itemId, value) {
+    if (!itemById.has(itemId)) return;
+    if (value) state.expiry[itemId] = value;
+    else delete state.expiry[itemId];
     scheduleSave();
   }
 
@@ -6559,9 +6668,13 @@ window.__CHECKLIST_DATA__ = {
 
     els.sheetPanel.addEventListener("input", (event) => {
       const remark = event.target.closest(".remark");
-      if (!remark) return;
-      autoGrow(remark);
-      setRemark(remark.dataset.remarkId, remark.value);
+      if (remark) {
+        autoGrow(remark);
+        setRemark(remark.dataset.remarkId, remark.value);
+        return;
+      }
+      const expiry = event.target.closest("[data-expiry-id]");
+      if (expiry) setExpiry(expiry.dataset.expiryId, expiry.value);
     });
 
     els.sheetPanel.addEventListener("dragover", (event) => {
@@ -6951,6 +7064,12 @@ window.__CHECKLIST_DATA__ = {
   function printNotesHtml(item) {
     const remark = String(state.remarks[item.id] || "").trim();
     const photos = Array.isArray(state.photos[item.id]) ? state.photos[item.id] : [];
+    const expiryValue = state.expiry[item.id] || "";
+    const expiryHtml = requiresExpiry(item)
+      ? `<div class="pp-expiry"><span>Date of expiry</span><strong>${
+          expiryValue ? escapeHtml(formatExpiryDate(expiryValue)) : "Not recorded"
+        }</strong></div>`
+      : "";
     const remarkHtml = remark
       ? `<div class="pp-remark">${nl2br(remark)}</div>`
       : '<div class="pp-remark pp-remark-empty">No remark recorded.</div>';
@@ -6966,7 +7085,7 @@ window.__CHECKLIST_DATA__ = {
           )
           .join("")}</div>`
       : "";
-    return remarkHtml + photosHtml;
+    return expiryHtml + remarkHtml + photosHtml;
   }
 
   function makePrintItemRow(item) {
