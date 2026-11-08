@@ -1126,11 +1126,6 @@ a {
   color: var(--faint);
 }
 
-.tag-remark {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--muted);
-}
 
 .answer {
   grid-area: answer;
@@ -5906,9 +5901,6 @@ window.__CHECKLIST_DATA__ = {
         }</span>`
       );
     }
-    if (item.remark) {
-      tags.push(`<span class="req tag-remark" title="Remark instruction from the workbook">Remark required</span>`);
-    }
     const requirement = requirementHtml(item);
     if (requirement) tags.push(requirement);
     return tags.join("");
@@ -5920,7 +5912,6 @@ window.__CHECKLIST_DATA__ = {
     if (item.evidence) {
       parts.push(String(item.evidence).toLowerCase() === "yes" ? "Photo required" : "Photo not required");
     }
-    if (item.remark) parts.push("Remark required");
     const requirement = requirementFor(item);
     if (requirement) parts.push(`Category ${state.category}: ${requirement}`);
     return parts.join(" · ");
