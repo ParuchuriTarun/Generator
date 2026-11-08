@@ -2641,7 +2641,7 @@ a {
       <div class="brand">
         <span class="brand-rule" aria-hidden="true"></span>
         <div class="brand-text">
-          <span class="brand-name">Branch operations checklist</span>
+          <span class="brand-name">Branch Operations Checklist</span>
         </div>
       </div>
       <div class="topbar-actions">
@@ -2723,7 +2723,7 @@ a {
           <input class="input" id="auditor-input" type="text" placeholder="Name for sign-off" autocomplete="name">
         </div>
         <div class="field">
-          <label for="manager-input">Branch manager</label>
+          <label for="manager-input">Branch Operation Manager</label>
           <input class="input" id="manager-input" type="text" placeholder="Name for sign-off" autocomplete="name">
         </div>
       </div>
@@ -6007,7 +6007,7 @@ window.__CHECKLIST_DATA__ = {
                   <label class="sr-only" for="${remarkId}">Remarks for checkpoint ${item.n}</label>
                   <textarea class="remark" id="${remarkId}" rows="1" data-remark-id="${escapeHtml(
                     item.id
-                  )}" placeholder="Add a remark">${escapeHtml(state.remarks[item.id] || "")}</textarea>
+                  )}" placeholder="Need a Detailed Remark">${escapeHtml(state.remarks[item.id] || "")}</textarea>
                   ${photosHtml(item.id)}
                 </div>
               </article>`;
@@ -6918,7 +6918,7 @@ window.__CHECKLIST_DATA__ = {
           ${coverMeta("Visit date", dateLabel())}
           ${coverMeta("Branch category", state.category || "Not set")}
           ${coverMeta("Auditor", state.auditor)}
-          ${coverMeta("Branch manager", state.manager)}
+          ${coverMeta("Branch Operation Manager", state.manager)}
         </div>
         <div class="cover-signoff">
           <h2>Sign-off</h2>
@@ -6930,7 +6930,7 @@ window.__CHECKLIST_DATA__ = {
               <span class="signoff-name">${state.auditor ? escapeHtml(state.auditor) : "&nbsp;"}</span>
             </div>
             <div class="signoff-cell">
-              <span class="signoff-label">Branch manager</span>
+              <span class="signoff-label">Branch Operation Manager</span>
               <span class="signoff-line"></span>
               <span class="signoff-name">${state.manager ? escapeHtml(state.manager) : "&nbsp;"}</span>
             </div>
