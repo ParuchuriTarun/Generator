@@ -1032,6 +1032,17 @@ a {
   min-width: 0;
 }
 
+.item-context {
+  margin: 0 0 5px;
+  padding-left: 8px;
+  border-left: 2px solid var(--ochre);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
 .item-text {
   margin-bottom: 0;
   color: var(--ink);
@@ -1039,6 +1050,23 @@ a {
   font-weight: 500;
   line-height: 1.55;
   overflow-wrap: break-word;
+}
+
+.item-detail {
+  margin: 6px 0 0;
+  color: var(--ink-2);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.item-detail-label {
+  margin-right: 5px;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .item-tags {
@@ -1072,6 +1100,36 @@ a {
   border-color: var(--ochre-soft);
   background: var(--ochre-soft);
   color: var(--ochre);
+}
+
+.tag-risk-medium {
+  border-color: var(--ochre-soft);
+  background: var(--ochre-soft);
+  color: var(--ochre);
+}
+
+.tag-risk-low {
+  border-color: var(--brand-soft);
+  background: var(--brand-soft);
+  color: var(--brand-ink);
+}
+
+.tag-photo {
+  border-color: var(--brand-soft);
+  background: var(--brand-soft);
+  color: var(--brand-ink);
+}
+
+.tag-photo-none {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--faint);
+}
+
+.tag-remark {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--muted);
 }
 
 .answer {
@@ -2228,6 +2286,20 @@ a {
   font-weight: 700;
 }
 
+.pp-sheet-note {
+  margin: 0 0 3mm;
+  padding: 1.5mm 2mm;
+  border-left: 0.8pt solid var(--ochre);
+  background: var(--ochre-soft);
+  color: var(--ink-2);
+  font-size: 6.6pt;
+  line-height: 1.42;
+}
+
+.pp-sheet-note strong {
+  color: var(--ink);
+}
+
 .pp-cont {
   display: flex;
   align-items: baseline;
@@ -2302,6 +2374,46 @@ a {
   font-weight: 500;
   line-height: 1.42;
   overflow-wrap: break-word;
+}
+
+.pp-context {
+  margin-bottom: 0.8mm;
+  padding-left: 1.2mm;
+  border-left: 0.5pt solid var(--ochre);
+  color: var(--muted);
+  font-size: 6.2pt;
+  font-weight: 600;
+  line-height: 1.32;
+}
+
+.pp-check-text {
+  font-size: 8pt;
+  font-weight: 500;
+  line-height: 1.42;
+}
+
+.pp-detail {
+  margin-top: 0.8mm;
+  color: var(--ink-2);
+  font-size: 6.8pt;
+  line-height: 1.35;
+}
+
+.pp-detail-label {
+  margin-right: 1mm;
+  color: var(--muted);
+  font-size: 5.5pt;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pp-meta {
+  margin-top: 1mm;
+  color: var(--muted);
+  font-size: 5.8pt;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .pp-req {
@@ -2455,19 +2567,6 @@ a {
   height: 30mm;
 }
 
-.pp-note-row td {
-  padding: 2.4mm 2mm;
-  border-top: 0.6pt solid var(--line-strong);
-  border-bottom: 0;
-  background: var(--ochre-soft);
-  color: var(--ink-2);
-  font-size: 7.4pt;
-}
-
-.pp-note-row strong {
-  color: var(--ink);
-}
-
 /* On paper, strip the screen shell and give the pages the viewport. */
 @media print {
   @page {
@@ -2569,10 +2668,10 @@ a {
       <div class="masthead-progress" aria-label="Overall checklist progress">
         <div class="progress-figure">
           <strong id="overall-answered">0</strong>
-          <span>of <span id="overall-total">105</span></span>
+          <span>of <span id="overall-total">151</span></span>
         </div>
         <span class="progress-label">checkpoints answered</span>
-        <div class="progress-track" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="105" aria-valuenow="0">
+        <div class="progress-track" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="151" aria-valuenow="0">
           <div class="progress-fill" id="overall-bar"></div>
         </div>
         <div class="progress-split">
@@ -2635,7 +2734,7 @@ a {
         <button class="work-tab" id="tab-ops" type="button" role="tab" aria-selected="true" aria-controls="sheet-panel" tabindex="0" data-sheet="ops">
           <span class="tab-index">01</span>
           <span class="tab-label">Operations</span>
-          <span class="tab-count" data-tab-count="ops">0/41</span>
+          <span class="tab-count" data-tab-count="ops">0/87</span>
         </button>
         <button class="work-tab" id="tab-display" type="button" role="tab" aria-selected="false" aria-controls="sheet-panel" tabindex="-1" data-sheet="display">
           <span class="tab-index">02</span>
@@ -3134,50 +3233,172 @@ window.__CHECKLIST_DATA__ = {
       "nav": "Operations",
       "title": "Operations and administration",
       "source": "Ops_Admin_Checklist",
-      "intro": "Premium handling, dispatch, expenses, security, housekeeping and statutory registers.",
+      "intro": "Detailed operations checks for premium handling, dispatch, expenses, security, housekeeping and registers. Risk and evidence requirements are shown for every checkpoint.",
       "sections": [
         {
           "title": "Premium receipting and banking",
           "items": [
             {
-              "id": "ops-admin-checklist-3",
-              "text": "Storage, security and physical custody of premium/petty cash, cheques and PDCs",
-              "n": 1
+              "id": "ops-admin-checklist-r3",
+              "text": "Check the Safety Cabinet is not detachable",
+              "n": 1,
+              "context": "Storage, security and physical custody of premium/petty cash, cheques and PDCs",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-4",
-              "text": "Timely banking and record keeping",
-              "n": 2
+              "id": "ops-admin-checklist-r4",
+              "text": "Verify premium instruments (Petty Cash/Cheques/DD/PDCs) stored in safety cabinet with limited access (Operations BOM / Smart Branch Manager).",
+              "n": 2,
+              "context": "Storage, security and physical custody of premium/petty cash, cheques and PDCs",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-5",
-              "text": "Cash and cheque pickup/ collection agency records maintenance (Letter/agreement from SBI Bank CMP to vendor for entrusting pick up job to be checked. Also if vendor has sub contracted to other agency that agreement/letter to be checked too)",
-              "n": 3
+              "id": "ops-admin-checklist-r5",
+              "text": "Verify no premium instruments lying loosely on all sample workstations. (Minimum 5 Workstations)",
+              "n": 3,
+              "context": "Storage, security and physical custody of premium/petty cash, cheques and PDCs",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-6",
-              "text": "Verifying identity of the collection agency personnel",
-              "n": 4
+              "id": "ops-admin-checklist-r6",
+              "text": "Verify Agreement / Letter from SBI Bank to CMS Vendor is available with the branch or not?",
+              "n": 4,
+              "context": "Cheque pickup/ collection agency records maintenance (Letter/agreement from SBI Bank CMP to vendor for entrusting pick up job to be checked. Also if vendor has sub contracted to other agency that agreement/letter to be checked too)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-7",
-              "text": "Stamping and signature on deposit slips",
-              "n": 5
+              "id": "ops-admin-checklist-r7",
+              "text": "Verify the agreement is having current office address or different?",
+              "n": 5,
+              "context": "Cheque pickup/ collection agency records maintenance (Letter/agreement from SBI Bank CMP to vendor for entrusting pick up job to be checked. Also if vendor has sub contracted to other agency that agreement/letter to be checked too)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-8",
-              "text": "Policy Dispatch and RTO Handling",
-              "n": 6
+              "id": "ops-admin-checklist-r8",
+              "text": "Verify the CMS Agency pickup person ID card is having validity or expired",
+              "n": 6,
+              "context": "Verifying identity of the collection agency personnel",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-9",
-              "text": "Surprise checks of drawer/cupboards to identify unaccounted premium instruments / Unmasked Aadhaar Cards / Cancellation Cheques / Bank Statements",
-              "n": 7
+              "id": "ops-admin-checklist-r9",
+              "text": "Verify stamp & signature on deposit slips. Note: Verify 10 deposit slips and 1 Sample for Evidence need to upload).",
+              "n": 7,
+              "context": "Stamping and signature on deposit slips",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-10",
+              "id": "ops-admin-checklist-r10",
+              "text": "Check timeliness of banking (same-day (Ebao) or next working day (TCS Bancs).",
+              "n": 8,
+              "context": "Timely banking and record keeping",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r11",
+              "text": "Check CMS pickup acknowledgment and time difference.",
+              "n": 9,
+              "context": "Timely banking and record keeping",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r12",
+              "text": "Verify Deposit Slip Date = CMS Acknowledgement Date = Bank Acknowledgement Date",
+              "n": 10,
+              "context": "Timely banking and record keeping",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r13",
+              "text": "Any delay in deposition should have reason recorded on deposit slip.",
+              "n": 11,
+              "context": "Timely banking and record keeping",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r14",
+              "text": "Verify any RTO Documents are lying in the office?",
+              "n": 12,
+              "context": "Policies - RTO - Handling / Dispatch",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r15",
+              "text": "RTO Document Register is maintained properly or not?",
+              "n": 13,
+              "context": "Policies - RTO - Handling / Dispatch",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r16",
+              "text": "Verify unaccounted Premium instruments are available in the drawers / cupboards",
+              "n": 14,
+              "context": "Surprise checks of drawer/cupboards to identify unaccounted premium instruments / Unmasked Aadhaar Cards / Cancellation Cheques / Bank Statements",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r17",
+              "text": "Verify unmasked Aadhaar Cards are stored / available in the workstations",
+              "n": 15,
+              "context": "Surprise checks of drawer/cupboards to identify unaccounted premium instruments / Unmasked Aadhaar Cards / Cancellation Cheques / Bank Statements",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r18",
+              "text": "Verify any Cancelled Cheques are available in the workstations",
+              "n": 16,
+              "context": "Surprise checks of drawer/cupboards to identify unaccounted premium instruments / Unmasked Aadhaar Cards / Cancellation Cheques / Bank Statements",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r19",
+              "text": "Verify Bank Statements of the Customers / Companies are available in the workstations",
+              "n": 17,
+              "context": "Surprise checks of drawer/cupboards to identify unaccounted premium instruments / Unmasked Aadhaar Cards / Cancellation Cheques / Bank Statements",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r20",
               "text": "Verify any discontinued product Brochures / Fliers / Single Page available in the Branch",
-              "n": 8
+              "n": 18,
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required",
+              "detail": "Record the product names (minimum 5 products) verified and where they are stored."
             }
           ]
         },
@@ -3185,145 +3406,502 @@ window.__CHECKLIST_DATA__ = {
           "title": "Expense management",
           "items": [
             {
-              "id": "ops-admin-checklist-13",
-              "text": "Compliance to Petty Cash Guidelines",
-              "n": 9
+              "id": "ops-admin-checklist-r23",
+              "text": "Verify Excel Sheet is getting maintained as per the Petty Cash Guidelines",
+              "n": 19,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
+              "detail": "Use the petty cash annexure/logsheet for verification."
             },
             {
-              "id": "ops-admin-checklist-14",
-              "text": "Timely payment of utility bills and other expenses of the branch",
-              "n": 10
+              "id": "ops-admin-checklist-r24",
+              "text": "Check the amount in hand matching with the amount mentioned in the Petty Cash Excel Sheet",
+              "n": 20,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-15",
-              "text": "Monitoring usage of Diesel Generator Set, maintenance of records, etc.",
-              "n": 11
+              "id": "ops-admin-checklist-r25",
+              "text": "Check the Mini Balance Statement Amount is matching with the amount mentioned in the Excel Sheet.",
+              "n": 21,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r26",
+              "text": "Verify vouchers are supported with bills & approved by concern authority as per DOFA.",
+              "n": 22,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r27",
+              "text": "Verify whether the bills are getting submitted on monthly basis",
+              "n": 23,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r28",
+              "text": "Verify whether the replenishment amount received matches with the bills submitted in the previous month cycle bills.",
+              "n": 24,
+              "context": "Compliance to Petty Cash Guidelines",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r29",
+              "text": "Verify the Electricity / Power Bills are submitting in the Digi Procure on timely basis (Without paying penalty).",
+              "n": 25,
+              "context": "Timely payment of utility bills and other expenses of the branch",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r30",
+              "text": "Verify the Maintenance bills are submitting in the Digi Procure on timely basis.",
+              "n": 26,
+              "context": "Timely payment of utility bills and other expenses of the branch",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r31",
+              "text": "If DG Set is available, Verify DG Set Logbook is available",
+              "n": 27,
+              "context": "Monitoring usage of Diesel Generator Set, maintenance of records, etc.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r32",
+              "text": "Verify the bills submitted by the vendor - Whether timelines of Power connection through DG Set is correctly recorded in the Bill vs available in the Logbook?",
+              "n": 28,
+              "context": "Monitoring usage of Diesel Generator Set, maintenance of records, etc.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             }
           ]
         },
         {
           "title": "Security and housekeeping",
-          "subtitle": "Physical security and IT security",
           "items": [
             {
-              "id": "ops-admin-checklist-19",
-              "text": "Fire Fighting Equipments - maintenance and staff awareness - Positioning near critical rooms like server & Electrcial room with expiry date",
-              "n": 12
+              "id": "ops-admin-checklist-r36",
+              "text": "Verify Smoke detectors installed and active",
+              "n": 29,
+              "context": "Fire Fighting Equipments - maintenance and staff awareness - Positioning near critical rooms like server & Electrcial room with expiry date",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-20",
-              "text": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
-              "n": 13
+              "id": "ops-admin-checklist-r37",
+              "text": "Verify Fire alarm panel is functioning or not",
+              "n": 30,
+              "context": "Fire Fighting Equipments - maintenance and staff awareness - Positioning near critical rooms like server & Electrcial room with expiry date",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-21",
-              "text": "Restricted access to server & electrical rooms, temperature maintenance of server/electrical room",
-              "n": 14
+              "id": "ops-admin-checklist-r38",
+              "text": "Verify all Fire Extinguishers are placed in Critical Areas and visible",
+              "n": 31,
+              "context": "Fire Fighting Equipments - maintenance and staff awareness - Positioning near critical rooms like server & Electrcial room with expiry date",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-22",
-              "text": "Safety measures such as proper wiring. Papers, files, etc. not to be stored in or around the UPS/Electric room, Server room.",
-              "n": 15
+              "id": "ops-admin-checklist-r39",
+              "text": "Verify all Fire Extinguishers are having expiry Dates mentioned on it (Evidence of Photos are required for all Fire Fighting Equipments)",
+              "n": 32,
+              "context": "Fire Fighting Equipments - maintenance and staff awareness - Positioning near critical rooms like server & Electrcial room with expiry date",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-23",
-              "text": "Access management [e.g. employee ID cards, Security gaurds & Housekeeping should be in uniform)",
-              "n": 16
+              "id": "ops-admin-checklist-r40",
+              "text": "Verify All CC Cameras are working",
+              "n": 33,
+              "context": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-24",
-              "text": "Security guard deployment (At least 2 SGs should be deployed in each office)",
-              "n": 17
+              "id": "ops-admin-checklist-r41",
+              "text": "Verify Coverage area is adequate (Entrances, Emergency Area, Operartions Cubicles, Reception Area) are covered or not?",
+              "n": 34,
+              "context": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-25",
-              "text": "Locking facility at office gate, type and number of locks used",
-              "n": 18
+              "id": "ops-admin-checklist-r42",
+              "text": "Verify Backup is available for 60 Days",
+              "n": 35,
+              "context": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-26",
-              "text": "Every office will have 4 sets of main door / shutter keys. Both the caretakers will have 1 set each, Operations SPOC will have 1 set, and the nearest SBI Branch will have the custody of 1 set of key.",
-              "n": 19
+              "id": "ops-admin-checklist-r43",
+              "text": "Verify Log Register for CCTV is available",
+              "n": 36,
+              "context": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-27",
-              "text": "Access to Pen drive/ CD drive only in approved workstations.",
-              "n": 20
+              "id": "ops-admin-checklist-r44",
+              "text": "Verify system date/time (should not be mismatched) with current time",
+              "n": 37,
+              "context": "CCTV cameras, display of \"Under CCTV Surveillance\", back-up (for 60 days), location of cameras for coverage.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-28",
-              "text": "Scrutiny of systems for illegal contents. (Personal Images / Videos)",
-              "n": 21
+              "id": "ops-admin-checklist-r45",
+              "text": "Verify \"Restricted Access\" signage is available on the Door of UPS and Server Room",
+              "n": 38,
+              "context": "Restricted access to server & electrical rooms, temperature maintenance of server/electrical room",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-29",
-              "text": "Scrutiny of systems for Unmasked Aadhaar Cards / Bank Statements / Blank Cheques",
-              "n": 22
+              "id": "ops-admin-checklist-r46",
+              "text": "Verify UPS and Server Room are locked",
+              "n": 39,
+              "context": "Restricted access to server & electrical rooms, temperature maintenance of server/electrical room",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-30",
-              "text": "Scrutiny of systems for availability of any unauthorized programs/ software.",
-              "n": 23
+              "id": "ops-admin-checklist-r47",
+              "text": "Temperature maintenance (should be within 18–22°C).",
+              "n": 40,
+              "context": "Restricted access to server & electrical rooms, temperature maintenance of server/electrical room",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-31",
-              "text": "Availability of updated Anti Virus Software in the system.",
-              "n": 24
+              "id": "ops-admin-checklist-r48",
+              "text": "No paper files stored in UPS Room and Server Room",
+              "n": 41,
+              "context": "Safety measures such as proper wiring. Papers, files, etc. not to be stored in or around the UPS/Electric room, Server room.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-32",
-              "text": "Usage of external wall paper for monitor.",
-              "n": 25
+              "id": "ops-admin-checklist-r49",
+              "text": "Check Dampness on the walls, wiring and loose cables.",
+              "n": 42,
+              "context": "Safety measures such as proper wiring. Papers, files, etc. not to be stored in or around the UPS/Electric room, Server room.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-33",
-              "text": "Locking of desktop while away from workstation",
-              "n": 26
+              "id": "ops-admin-checklist-r50",
+              "text": "All employees must have ID cards.",
+              "n": 43,
+              "context": "Access management [e.g. employee ID cards, Security gaurds & Housekeeping should be in uniform)",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-34",
-              "text": "Availability of music/ movie files stored on hard disk",
-              "n": 27
+              "id": "ops-admin-checklist-r51",
+              "text": "Security guards/housekeeping must be in uniform.",
+              "n": 44,
+              "context": "Access management [e.g. employee ID cards, Security gaurds & Housekeeping should be in uniform)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r52",
+              "text": "Security guards/housekeeping must have valid ID Cards",
+              "n": 45,
+              "context": "Access management [e.g. employee ID cards, Security gaurds & Housekeeping should be in uniform)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r53",
+              "text": "Verify with the attendance Register whether 2 Security Guards are coming or only one Security guard is doing 2 duties",
+              "n": 46,
+              "context": "Security guard deployment (At least 2 SGs should be deployed in each office)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r54",
+              "text": "Verify how many locks has been used for the main shutter + Entrance of the Office.",
+              "n": 47,
+              "context": "Locking facility at office gate, type and number of locks used",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r55",
+              "text": "Verify keys are not having rusting, loosend screws, tampering marks and broken latches",
+              "n": 48,
+              "context": "Locking facility at office gate, type and number of locks used",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r56",
+              "text": "Verify as Key Register Guidelines - No. of Keys who are handling (1 - BOM, 2 - Security Guards & 1 - Bank / 1 - Senior Person in the Branch). (Evidence of Banker Confirmation if deposited in the Bank).",
+              "n": 49,
+              "context": "Every office will have 4 sets of main door / shutter keys. Both the caretakers will have 1 set each, Operations SPOC will have 1 set, and the nearest SBI Branch will have the custody of 1 set of key.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r57",
+              "text": "Verify USB access is having to laptops / desktops. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 50,
+              "context": "Access to Pen drive/ CD drive only in approved workstations.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r58",
+              "text": "Verify any personal images / videos are available in the computer. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 51,
+              "context": "Scrutiny of systems for illegal contents. (Personal Images / Videos)",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r59",
+              "text": "Verify any unmasked Aadhaar cards / bank statements / blank cheques are available in the system. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 52,
+              "context": "Scrutiny of systems for Unmasked Aadhaar Cards / Bank Statements / Blank Cheques",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r60",
+              "text": "Verify any unauthorized softwares are available (whatsapp, gmail, youtube, chatgpt, camscanner, poki.com, PDF converters, limewire, etc) (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 53,
+              "context": "Scrutiny of systems for availability of any unauthorized programs/ software.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r61",
+              "text": "Verify antivirus is updated. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 54,
+              "context": "Availability of updated Anti Virus Software in the system.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r62",
+              "text": "Verify any external wallpaper is available to the system. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 55,
+              "context": "Usage of external wall paper for monitor.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r63",
+              "text": "Verify user has locked the system when he / she is away from the system. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 56,
+              "context": "Locking of desktop while away from workstation",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r64",
+              "text": "Verify movie/video/music files are available in the system. (Evdiences for Exceptional Cases along with the Annexure).",
+              "n": 57,
+              "context": "Availability of music/ movie files stored on hard disk",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             }
-          ]
+          ],
+          "subtitle": "Physical security and IT security"
         },
         {
           "title": "Housekeeping and fixed assets",
           "items": [
             {
-              "id": "ops-admin-checklist-37",
-              "text": "Proper File maintenance for Electricity Bill, Telephone, Rent, AMC and purchase of any fixed assets (with HO approval)",
-              "n": 28
+              "id": "ops-admin-checklist-r67",
+              "text": "Verify whether Office is having cleanliness and dust-free desks. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 58,
+              "context": "Office cleanliness/Hygeine/Painting condition and pest control; provision of basic necessities",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-38",
-              "text": "Office cleanliness/Hygeine/Painting condition and pest control; provision of basic necessities",
-              "n": 29
+              "id": "ops-admin-checklist-r68",
+              "text": "Verify Washrooms maintained properly. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 59,
+              "context": "Office cleanliness/Hygeine/Painting condition and pest control; provision of basic necessities",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-39",
-              "text": "Storage of policy documents and stationery / Record Retention (Archival) of Proposals, Deposit Slips, Claim Files and Etc. (For every 6 months).",
-              "n": 30
+              "id": "ops-admin-checklist-r69",
+              "text": "Verify Pest control activity completed and records are updated.",
+              "n": 60,
+              "context": "Office cleanliness/Hygeine/Painting condition and pest control; provision of basic necessities",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-40",
-              "text": "Gate pass should be issued from gate pass book for any movement of IT assets and Non-IT assets with an approval process through an authorised SPOC of the respective office.",
-              "n": 31
+              "id": "ops-admin-checklist-r70",
+              "text": "Verify Painting condition acceptable across the Office. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 61,
+              "context": "Office cleanliness/Hygeine/Painting condition and pest control; provision of basic necessities",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-41",
-              "text": "Installation of Evacuation plan / location map inside the office and at the common area.",
-              "n": 32
+              "id": "ops-admin-checklist-r71",
+              "text": "Verify proper storage of proposals, deposit slips, claim files, and stationery (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 62,
+              "context": "Storage of policy documents and stationery / Record Retention (Archival) of Proposals, Deposit Slips, Claim Files and Etc. (For every 6 months).",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-42",
-              "text": "Physical verification of fixed assets",
-              "n": 33
+              "id": "ops-admin-checklist-r72",
+              "text": "Verify Old files (Proposals, Deposit slips, Claim Files) must not remain in branch beyond 6–9 months. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 63,
+              "context": "Storage of policy documents and stationery / Record Retention (Archival) of Proposals, Deposit Slips, Claim Files and Etc. (For every 6 months).",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-43",
-              "text": "Maintenance of First Aid box/Medical kits",
-              "n": 34
+              "id": "ops-admin-checklist-r73",
+              "text": "Check if file boxes or carton boxes used for archival are labelled properly. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 64,
+              "context": "Storage of policy documents and stationery / Record Retention (Archival) of Proposals, Deposit Slips, Claim Files and Etc. (For every 6 months).",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r74",
+              "text": "Verify a physical Gate Pass Book is available at the branch.",
+              "n": 65,
+              "context": "Gate pass should be issued from gate pass book for any movement of IT assets and Non-IT assets with an approval process through an authorised SPOC of the respective office.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r75",
+              "text": "Verify Gate pass is used only IT Assets or for Non IT Assets Both",
+              "n": 66,
+              "context": "Gate pass should be issued from gate pass book for any movement of IT assets and Non-IT assets with an approval process through an authorised SPOC of the respective office.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r76",
+              "text": "Check if the counterfoil (duplicate copy) is intact and properly filed.",
+              "n": 67,
+              "context": "Gate pass should be issued from gate pass book for any movement of IT assets and Non-IT assets with an approval process through an authorised SPOC of the respective office.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r77",
+              "text": "Confirm all issued gate passes have signatures of the concerned staff and security guard.",
+              "n": 68,
+              "context": "Gate pass should be issued from gate pass book for any movement of IT assets and Non-IT assets with an approval process through an authorised SPOC of the respective office.",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r78",
+              "text": "Verify Evacuation plan / location map is dispalyed in the Office (Common Area).",
+              "n": 69,
+              "context": "Installation of Evacuation plan / location map inside the office and at the common area.",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r79",
+              "text": "Count the Physical Assets in the Branch and Verify the Count with HO FAR Records. (Evidences / Photos to be shared if found Exceptional)",
+              "n": 70,
+              "context": "Physical verification of fixed assets",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r80",
+              "text": "Verify whether all medicines listed in the prescribed Head Office list are available in the first-aid box.",
+              "n": 71,
+              "context": "Maintenance of First Aid box/Medical kits",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r81",
+              "text": "Verify whether all medicines are within their expiry dates and safe for use. (Evdiences for Exceptional Cases - Need to capture the Photos).",
+              "n": 72,
+              "context": "Maintenance of First Aid box/Medical kits",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             }
           ]
         },
@@ -3331,52 +3909,152 @@ window.__CHECKLIST_DATA__ = {
           "title": "Registers",
           "items": [
             {
-              "id": "ops-admin-checklist-46",
-              "text": "Log register (In & Out) for accessing server room & electrical room",
-              "n": 35
+              "id": "ops-admin-checklist-r84",
+              "text": "Verify Log Registers for Server Room and Electrical Room (In and Out Time must be available).",
+              "n": 73,
+              "context": "Log register (In & Out) for accessing server room & electrical room",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-47",
-              "text": "Attendance record of housekeeping/Security Guard staff including offroll office staff",
-              "n": 36
+              "id": "ops-admin-checklist-r85",
+              "text": "Verify Attendance Records are correctly updated for Housekeeing / Security Guard (Off Role Employees) Staff.",
+              "n": 74,
+              "context": "Attendance record of housekeeping/Security Guard staff including offroll office staff",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-48",
-              "text": "Log register for CCTV footage retreival, footage to be retreived on ROM approval only",
-              "n": 37
+              "id": "ops-admin-checklist-r86",
+              "text": "Verify Log register for CCTV footage is available or not?",
+              "n": 75,
+              "context": "Log register for CCTV footage retreival, footage to be retreived on ROM approval only",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-49",
-              "text": "Keys register to be maintained as per Key management SOP",
-              "n": 38
+              "id": "ops-admin-checklist-r87",
+              "text": "Verify whether any entries in the register require approval and confirm that the necessary approvals have been obtained",
+              "n": 76,
+              "context": "Log register for CCTV footage retreival, footage to be retreived on ROM approval only",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-50",
-              "text": "Visitor register & Register for employees visiting from other branch/Offices",
-              "n": 39
+              "id": "ops-admin-checklist-r88",
+              "text": "Verify that a physical Key Register is maintained at the branch.",
+              "n": 77,
+              "context": "Keys register to be maintained as per Key management SOP",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-51",
-              "text": "Register for medicine usage",
-              "n": 40
+              "id": "ops-admin-checklist-r89",
+              "text": "Verify whether all keys are properly numbered and the corresponding details are accurately updated in the key register.",
+              "n": 78,
+              "context": "Keys register to be maintained as per Key management SOP",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             },
             {
-              "id": "ops-admin-checklist-52",
-              "text": "Suggestion/complaint box to be checked for any customer complaints",
-              "n": 41
+              "id": "ops-admin-checklist-r90",
+              "text": "Verify Key Movements are updated in the Register properly",
+              "n": 79,
+              "context": "Keys register to be maintained as per Key management SOP",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r91",
+              "text": "Verify Visitor Register and Other Branch Employees Visitor register is available or not",
+              "n": 80,
+              "context": "Visitor register & Register for employees visiting from other branch/Offices",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r92",
+              "text": "Verify the records are updated correctly or not",
+              "n": 81,
+              "context": "Visitor register & Register for employees visiting from other branch/Offices",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r93",
+              "text": "Verify Medicine Kit Register is available",
+              "n": 82,
+              "context": "Register for medicine usage",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r94",
+              "text": "Verify whether the medicine usage log is regularly updated in the register.",
+              "n": 83,
+              "context": "Register for medicine usage",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r95",
+              "text": "Check if the box is physically present at the branch.",
+              "n": 84,
+              "context": "Suggestion/complaint box to be checked for any customer complaints",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r96",
+              "text": "Verify the box is properly labelled as “Suggestion / Complaint Box”.",
+              "n": 85,
+              "context": "Suggestion/complaint box to be checked for any customer complaints",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r97",
+              "text": "Verify the box is reachable / visible to Customers",
+              "n": 86,
+              "context": "Suggestion/complaint box to be checked for any customer complaints",
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
+            },
+            {
+              "id": "ops-admin-checklist-r98",
+              "text": "Verify any complaints are available in the box",
+              "n": 87,
+              "context": "Suggestion/complaint box to be checked for any customer complaints",
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             }
           ]
         }
       ],
-      "note": "Statutory and IRDA compliances are covered in the Display checklist.",
-      "total": 41
+      "note": "A detailed remark is required for every checkpoint. Petty cash verification should use the annexure/logsheet. Statutory and IRDA compliance displays are covered in the Display checklist.",
+      "total": 87
     },
     {
       "id": "display",
       "nav": "Display",
-      "title": "Display checklist",
+      "title": "Display and statutory compliance",
       "source": "Display Checklist",
-      "intro": "Agreements, registrations and the statutory notices displayed at the branch.",
+      "intro": "Agreements, registrations and statutory displays, including expiry dates and photo evidence requirements.",
       "sections": [
         {
           "title": "Agreements",
@@ -3384,17 +4062,28 @@ window.__CHECKLIST_DATA__ = {
             {
               "id": "display-checklist-3",
               "text": "Availability of agreement copy between Land Lord & Company",
-              "n": 1
+              "n": 1,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-4",
               "text": "Copy of building insurance policy (As required in lease agreement)",
-              "n": 2
+              "n": 2,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-5",
               "text": "Availability of agreement copies between vendors & Company",
-              "n": 3
+              "n": 3,
+              "risk": "Low",
+              "evidence": "No",
+              "remark": "Detail Remark is required"
             }
           ]
         },
@@ -3404,27 +4093,47 @@ window.__CHECKLIST_DATA__ = {
             {
               "id": "display-checklist-7",
               "text": "Copy of Shops & Establishment Registration Certificate",
-              "n": 4
+              "n": 4,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-8",
               "text": "Copy of trade license (if applicable)",
-              "n": 5
+              "n": 5,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-9",
               "text": "Copy of Provident Fund Registration Certificate",
-              "n": 6
+              "n": 6,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-10",
               "text": "Copy of ESI Registration Certificate",
-              "n": 7
+              "n": 7,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-11",
               "text": "Copy of Professional Tax Registration Certificate",
-              "n": 8
+              "n": 8,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Date of Expiry to be recorded",
+              "remark": "Detail Remark is required"
             }
           ]
         },
@@ -3434,157 +4143,247 @@ window.__CHECKLIST_DATA__ = {
             {
               "id": "display-checklist-13",
               "text": "Display of Working Hours (Over steel plate at entrance date)",
-              "n": 9
+              "n": 9,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-14",
               "text": "Display of Weekly Closure Day (Over steel plate at entrance date)",
-              "n": 10
+              "n": 10,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-15",
               "text": "Display of List of Holidays",
-              "n": 11
+              "n": 11,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-16",
               "text": "Name of Company in English & Local Language displayed on Signboard(Glowsign) with new logo",
-              "n": 12
+              "n": 12,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-17",
               "text": "Display of IRDA Approval Certificate",
-              "n": 13
+              "n": 13,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-18",
               "text": "Display From A & Form B under Gratuity Act, 1972",
-              "n": 14
+              "n": 14,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-19",
               "text": "Abstract of Payment of Gratutiy act, 1972 (Form U)",
-              "n": 15
+              "n": 15,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-20",
               "text": "Display of Name of Person to receive notice under Gratuity Act,1972",
-              "n": 16
+              "n": 16,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-21",
               "text": "Abstract under Industrial disputes Act,1947",
-              "n": 17
+              "n": 17,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-22",
               "text": "Display on Notice Board \" No Child Labours are engaged\"",
-              "n": 18
+              "n": 18,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-23",
               "text": "Display of Abstract of rules under Shops & Establishment Act",
-              "n": 19
+              "n": 19,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-24",
               "text": "Display of Abstract of rules under Minimum Wages Act,1948",
-              "n": 20
+              "n": 20,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-25",
               "text": "Display of Abstract of rules under Contract Labour Act,1970",
-              "n": 21
+              "n": 21,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-26",
               "text": "Display of Abstract of rules under Maternity Benefit Act,1961",
-              "n": 22
+              "n": 22,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-27",
               "text": "Display of Abstract of rules under Payment of Wages Act, 1936",
-              "n": 23
+              "n": 23,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-28",
               "text": "Display of Industrial Employment (Standing orders) Act,1946",
-              "n": 24
+              "n": 24,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-29",
               "text": "Display of Abstract of rules under Payment of Bonus Act, 1965",
-              "n": 25
+              "n": 25,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-30",
               "text": "Display of Apprentice Act, 1961",
-              "n": 26
+              "n": 26,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-31",
               "text": "Display notice about availability of magnifying glasses in the Branch.",
-              "n": 27
+              "n": 27,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-32",
               "text": "Display of Abstract of rules under PPHI Guidelines - Latest",
-              "n": 28
+              "n": 28,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-33",
               "text": "Display of the latest Motor TP Rates",
-              "n": 29
+              "n": 29,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-34",
               "text": "Display of POSH Policy under POSH Act, 2013 (Latest policy to be displayed)",
-              "n": 30
+              "n": 30,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-35",
               "text": "Display of Branch GRO details",
-              "n": 31
+              "n": 31,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-36",
               "text": "Display of Emergency Management Team/Incident Management Team details",
-              "n": 32
+              "n": 32,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-37",
               "text": "Company Grievance Redressal Officer(GRO) along with address of Insurance Ombudsman",
-              "n": 33
+              "n": 33,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-38",
               "text": "Display of GST certifcate (As per state)",
-              "n": 34
+              "n": 34,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-39",
               "text": "Board of directors list/KMPs as annexure B to GST certificate",
-              "n": 35
+              "n": 35,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-40",
               "text": "Display of Poster for SBIG whistleblower policy & Fraud awareness",
-              "n": 36
+              "n": 36,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-41",
               "text": "Display of Poster of insurance ombudsman alongwith list of ombudsman offices",
-              "n": 37
+              "n": 37,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             },
             {
               "id": "display-checklist-42",
               "text": "Nodal officers in SBIG for Motor TP Claims",
-              "n": 38
+              "n": 38,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required"
             }
           ]
         }
       ],
-      "note": "",
+      "note": "A detailed remark is required for every checkpoint. Verify that all pages are available on the notice board, and state in the remark that all pages are available and the front photo evidence has been uploaded.",
       "total": 38
     },
     {
@@ -3600,267 +4399,351 @@ window.__CHECKLIST_DATA__ = {
             {
               "id": "infra-9",
               "text": "Reception Area",
+              "n": 1,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Verify Receiption Area is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 1
+              }
             },
             {
               "id": "infra-10",
               "text": "Dedicated Agent Bay",
+              "n": 2,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Agent's Bay Dangler is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 2
+              }
             },
             {
               "id": "infra-11",
               "text": "Notice Board at Reception",
+              "n": 3,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Verify Notice board is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 3
+              }
             },
             {
               "id": "infra-12",
               "text": "Meeting Room",
+              "n": 4,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Verify Meeting Room is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 4
+              }
             },
             {
               "id": "infra-13",
               "text": "Training Room",
+              "n": 5,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Verify Training Room is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Optional"
-              },
-              "n": 5
+              }
             },
             {
               "id": "infra-14",
               "text": "Network Connectivity",
+              "n": 6,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "detail": "Verify Network Connectivity is available or not",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "-",
                 "B": "-",
                 "C": "-"
-              },
-              "n": 6
+              }
             },
             {
               "id": "infra-15",
               "text": "Electrical / UPS Room",
+              "n": 7,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 7
+              }
             },
             {
               "id": "infra-16",
               "text": "LED Lights",
+              "n": 8,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 8
+              }
             },
             {
               "id": "infra-17",
               "text": "AC Backup in Server Room",
+              "n": 9,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 9
+              }
             },
             {
               "id": "infra-18",
               "text": "Power Backup (UPS/DG Set)",
+              "n": 10,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "-",
                 "B": "-",
                 "C": "-"
-              },
-              "n": 10
+              }
             },
             {
               "id": "infra-19",
               "text": "Store Room",
+              "n": 11,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 11
+              }
             },
             {
               "id": "infra-20",
               "text": "Pantry",
+              "n": 12,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 12
+              }
             },
             {
               "id": "infra-21",
               "text": "Separate Washroom for Gents",
+              "n": 13,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 13
+              }
             },
             {
               "id": "infra-22",
               "text": "Separate Washroom for Ladies",
+              "n": 14,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 14
+              }
             },
             {
               "id": "infra-23",
               "text": "Fire Alarm Panel",
+              "n": 15,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 15
+              }
             },
             {
               "id": "infra-24",
               "text": "CCTV Cameras,Monitoring display to be at reception area with DVR/NVR in server room.",
+              "n": 16,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 16
+              }
             },
             {
               "id": "infra-25",
               "text": "Fire Extinguishers & Fire Alarm System",
+              "n": 17,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 17
+              }
             },
             {
               "id": "infra-26",
               "text": "Fire Exit",
+              "n": 18,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "-",
                 "B": "-",
                 "C": "-"
-              },
-              "n": 18
+              }
             },
             {
               "id": "infra-27",
               "text": "Smoke Detectors",
+              "n": 19,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 19
+              }
             },
             {
               "id": "infra-28",
               "text": "Branding / Signages",
+              "n": 20,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 20
+              }
             },
             {
               "id": "infra-29",
               "text": "Security",
+              "n": 21,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 21
+              }
             },
             {
               "id": "infra-30",
               "text": "Housekeeping",
+              "n": 22,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "-",
                 "B": "-",
                 "C": "-"
-              },
-              "n": 22
+              }
             },
             {
               "id": "infra-31",
               "text": "Tea/Coffee Vending Machine",
+              "n": 23,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Optional",
                 "C": "Optional"
-              },
-              "n": 23
+              }
             },
             {
               "id": "infra-32",
               "text": "Water Dispenser",
+              "n": 24,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 24
+              }
             },
             {
               "id": "infra-33",
               "text": "Foldable wheel chair in office",
+              "n": 25,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 25
+              }
             },
             {
               "id": "infra-34",
               "text": "Television at reception for display of marketing content",
+              "n": 26,
+              "risk": "Medium",
+              "evidence": "Yes",
+              "remark": "Detail Remark is required",
               "req": {
                 "A": "Must",
                 "B": "Must",
                 "C": "Must"
-              },
-              "n": 26
+              }
             }
           ]
         }
       ],
-      "note": "",
+      "note": "A detailed remark is required for every checkpoint. Requirement levels follow the branch category from the Reference sheet.",
       "total": 26
     }
   ],
@@ -5003,6 +5886,46 @@ window.__CHECKLIST_DATA__ = {
     )} branches">${escapeHtml(value)}</span>`;
   }
 
+  function itemTagsHtml(item) {
+    const tags = [];
+    if (item.risk) {
+      const riskClass = String(item.risk).toLowerCase().replace(/[^a-z0-9-]/g, "");
+      tags.push(
+        `<span class="req tag-risk tag-risk-${riskClass}" title="Risk rating from the workbook">Risk: ${escapeHtml(
+          item.risk
+        )}</span>`
+      );
+    }
+    if (item.evidence) {
+      const required = String(item.evidence).toLowerCase() === "yes";
+      tags.push(
+        `<span class="req ${
+          required ? "tag-photo" : "tag-photo-none"
+        }" title="Photo / scan evidence requirement from the workbook">${
+          required ? "Photo required" : "Photo not required"
+        }</span>`
+      );
+    }
+    if (item.remark) {
+      tags.push(`<span class="req tag-remark" title="Remark instruction from the workbook">Remark required</span>`);
+    }
+    const requirement = requirementHtml(item);
+    if (requirement) tags.push(requirement);
+    return tags.join("");
+  }
+
+  function printMetaText(item) {
+    const parts = [];
+    if (item.risk) parts.push(`Risk: ${item.risk}`);
+    if (item.evidence) {
+      parts.push(String(item.evidence).toLowerCase() === "yes" ? "Photo required" : "Photo not required");
+    }
+    if (item.remark) parts.push("Remark required");
+    const requirement = requirementFor(item);
+    if (requirement) parts.push(`Category ${state.category}: ${requirement}`);
+    return parts.join(" · ");
+  }
+
   function photosHtml(itemId) {
     const photos = Array.isArray(state.photos[itemId]) ? state.photos[itemId] : [];
     const full = photos.length >= MAX_PHOTOS;
@@ -5057,8 +5980,16 @@ window.__CHECKLIST_DATA__ = {
               <article class="item" data-id="${escapeHtml(item.id)}">
                 <div class="item-num" aria-hidden="true">${String(item.n).padStart(2, "0")}</div>
                 <div class="item-main">
+                  ${item.context ? `<p class="item-context">${escapeHtml(item.context)}</p>` : ""}
                   <p class="item-text" id="${textId}">${escapeHtml(item.text)}</p>
-                  <div class="item-tags">${requirementHtml(item)}</div>
+                  ${
+                    item.detail
+                      ? `<p class="item-detail"><span class="item-detail-label">Sub-check</span>${escapeHtml(
+                          item.detail
+                        )}</p>`
+                      : ""
+                  }
+                  <div class="item-tags">${itemTagsHtml(item)}</div>
                 </div>
                 <div class="answer" role="group" aria-labelledby="${textId}">
                   <button type="button" class="mark mark-yes" data-answer="yes" data-item-id="${escapeHtml(
@@ -6049,15 +6980,22 @@ window.__CHECKLIST_DATA__ = {
 
   function makePrintItemRow(item) {
     const answer = state.answers[item.id] || "";
-    const requirement = requirementFor(item);
+    const meta = printMetaText(item);
     const row = document.createElement("tr");
     row.innerHTML = `
       <td class="td-num">${item.n}</td>
       <td>
         <div class="pp-check">
-          ${escapeHtml(item.text)}${
-            requirement ? `<span class="pp-req">${escapeHtml(requirement)}</span>` : ""
+          ${item.context ? `<div class="pp-context">${escapeHtml(item.context)}</div>` : ""}
+          <div class="pp-check-text">${escapeHtml(item.text)}</div>
+          ${
+            item.detail
+              ? `<div class="pp-detail"><span class="pp-detail-label">Sub-check</span>${escapeHtml(
+                  item.detail
+                )}</div>`
+              : ""
           }
+          ${meta ? `<div class="pp-meta">${escapeHtml(meta)}</div>` : ""}
         </div>
       </td>
       <td>${resultHtml(answer === "yes", answer === "no")}</td>
@@ -6073,13 +7011,6 @@ window.__CHECKLIST_DATA__ = {
       ${section.subtitle ? `<span class="pp-section-sub">${escapeHtml(section.subtitle)}</span>` : ""}
       ${continued ? '<span class="pp-section-sub">continued</span>' : ""}
     </td>`;
-    return row;
-  }
-
-  function makePrintNoteRow(note) {
-    const row = document.createElement("tr");
-    row.className = "pp-note-row";
-    row.innerHTML = `<td colspan="4"><strong>Note</strong> ${escapeHtml(note)}</td>`;
     return row;
   }
 
@@ -6107,6 +7038,11 @@ window.__CHECKLIST_DATA__ = {
             <span><strong>${stats.pending}</strong> pending</span>
             <span><strong>${stats.photos}</strong> photos</span>
           </div>
+          ${
+            sheet.note
+              ? `<p class="pp-sheet-note"><strong>Note</strong> ${escapeHtml(sheet.note)}</p>`
+              : ""
+          }
         </div>`;
     page.innerHTML = `
       <div class="pp-run">
@@ -6188,17 +7124,6 @@ window.__CHECKLIST_DATA__ = {
           }
         }
       });
-
-      if (sheet.note) {
-        const noteRow = makePrintNoteRow(sheet.note);
-        tbody.appendChild(noteRow);
-        if (printBodyOverflows(page)) {
-          tbody.removeChild(noteRow);
-          page = makeChecklistPage(sheet, true);
-          tbody = page.querySelector("tbody");
-          tbody.appendChild(noteRow);
-        }
-      }
     });
 
     const pages = Array.from(els.printRoot.querySelectorAll(".print-page"));
