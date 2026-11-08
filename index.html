@@ -958,6 +958,10 @@ a {
   border-top: 0;
 }
 
+.check-section.is-flat + .check-section.is-flat {
+  border-top: 1px solid var(--line-strong);
+}
+
 .section-bar {
   display: flex;
   align-items: baseline;
@@ -993,33 +997,89 @@ a {
 }
 
 .items {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(190px, 0.78fr) minmax(0, 1.34fr) 122px minmax(0, 1.08fr);
+  column-gap: 16px;
+  align-items: stretch;
+  padding: 0 28px;
+}
+
+.items.has-expiry {
+  grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1.28fr) 112px minmax(0, 1fr) 142px;
+}
+
+.checklist-head {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.78fr) minmax(0, 1.34fr) 122px minmax(0, 1.08fr);
+  column-gap: 16px;
+  padding: 9px 28px;
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.checklist-head.has-expiry {
+  grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1.28fr) 112px minmax(0, 1fr) 142px;
 }
 
 .item {
-  display: grid;
-  grid-template-columns: 28px minmax(0, 0.96fr) 122px minmax(0, 1.04fr);
-  grid-template-areas: "num main answer notes";
-  gap: 16px;
-  padding: 18px 28px;
+  display: contents;
+}
+
+.item-group-head {
+  grid-column: 1;
+  align-self: stretch;
+  padding: 16px 16px 18px 0;
+  border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  scroll-margin-top: 150px;
-  transition: background-color var(--dur-micro) ease;
+  color: var(--ink-2);
+  font-size: 11.5px;
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: break-word;
 }
 
-.item:last-child {
-  border-bottom: 0;
+.item-group-head h3,
+.item-group-head h4 {
+  margin: 0;
+  color: inherit;
+  font: inherit;
 }
 
-.item:hover,
-.item:focus-within {
-  background: var(--surface-2);
+.item-group-kicker {
+  display: none;
+}
+
+.item-group-count {
+  display: block;
+  margin-top: 7px;
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.item-main,
+.answer-cell,
+.item-notes,
+.item-expiry-cell {
+  min-width: 0;
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.item-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
 }
 
 .item-num {
-  grid-area: num;
-  padding-top: 3px;
+  flex: none;
+  padding-top: 2px;
   color: var(--faint);
   font-size: 10.5px;
   font-weight: 650;
@@ -1028,22 +1088,12 @@ a {
 }
 
 .item-main {
-  grid-area: main;
   min-width: 0;
 }
 
-.item-context {
-  margin: 0 0 5px;
-  padding-left: 8px;
-  border-left: 2px solid var(--ochre);
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.4;
-  overflow-wrap: break-word;
-}
-
 .item-text {
+  flex: 1;
+  min-width: 0;
   margin-bottom: 0;
   color: var(--ink);
   font-size: 13.5px;
@@ -1069,27 +1119,33 @@ a {
   text-transform: uppercase;
 }
 
-.item-expiry {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 9px;
+.item-expiry-cell {
+  align-self: stretch;
 }
 
 .item-expiry-label {
+  display: none;
+  margin-bottom: 5px;
   color: var(--muted);
-  font-size: 10.5px;
-  font-weight: 650;
-  white-space: nowrap;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.item-expiry .expiry-input {
-  width: 168px;
-  max-width: 100%;
-  min-height: 36px;
+.expiry-input {
+  width: 100%;
+  max-width: 190px;
+  min-height: 38px;
   padding: 6px 9px;
   font-size: 12.5px;
+}
+
+.expiry-empty {
+  display: block;
+  padding-top: 9px;
+  color: var(--faint);
+  font-size: 12px;
 }
 
 .item-tags {
@@ -1151,12 +1207,9 @@ a {
 
 
 .answer {
-  grid-area: answer;
   display: flex;
   gap: 3px;
-  align-self: start;
-  width: 122px;
-  margin-top: -3px;
+  width: 100%;
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: var(--r-md);
@@ -1216,7 +1269,6 @@ a {
 }
 
 .item-notes {
-  grid-area: notes;
   min-width: 0;
 }
 
@@ -1736,16 +1788,78 @@ a {
     width: 250px;
   }
 
+  .checklist-head {
+    display: none;
+  }
+
+  .items,
+  .items.has-expiry {
+    display: block;
+    padding: 0;
+  }
+
+  .item-group-head {
+    padding: 14px 20px;
+    border-top: 1px solid var(--line);
+    border-right: 0;
+    background: var(--surface-2);
+  }
+
+  .item-group-kicker {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--faint);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .item-group-count {
+    margin-top: 4px;
+  }
+
   .item {
-    grid-template-columns: 26px minmax(0, 1fr) 122px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 122px;
     grid-template-areas:
-      "num main answer"
-      ". notes notes";
+      "main answer"
+      "notes notes"
+      "expiry expiry";
     gap: 12px 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 150px;
+  }
+
+  .item-main {
+    grid-area: main;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .answer-cell {
+    grid-area: answer;
+    align-self: start;
+    padding: 0;
+    border-bottom: 0;
   }
 
   .item-notes {
+    grid-area: notes;
     margin-top: 2px;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .item-expiry-cell {
+    grid-area: expiry;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .item-expiry-label {
+    display: block;
   }
 
   .remark {
@@ -1913,22 +2027,22 @@ a {
   }
 
   .item {
-    grid-template-columns: 24px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "num main"
-      "num answer"
-      "num notes";
-    gap: 10px 12px;
+      "main"
+      "answer"
+      "notes"
+      "expiry";
+    gap: 10px;
     padding: 16px 18px;
-  }
-
-  .item-num {
-    padding-top: 2px;
   }
 
   .answer {
     width: min(200px, 100%);
-    margin-top: 0;
+  }
+
+  .expiry-input {
+    max-width: 220px;
   }
 
   .mark {
@@ -6047,69 +6161,114 @@ window.__CHECKLIST_DATA__ = {
       </div>`;
   }
 
+  function sheetHasExpiryColumn(sheet) {
+    return sheet.items.some((item) => requiresExpiry(item));
+  }
+
+  function sectionGroups(sheet, section) {
+    if (sheet.id !== "ops") {
+      return [{ heading: section.title, items: section.items }];
+    }
+    const groups = [];
+    section.items.forEach((item) => {
+      const key = item.context || `item:${item.id}`;
+      let group = groups[groups.length - 1];
+      if (!group || group.key !== key) {
+        group = { key, heading: item.context || "General", items: [] };
+        groups.push(group);
+      }
+      group.items.push(item);
+    });
+    return groups;
+  }
+
+  function itemMarkup(item, hasExpiryColumn) {
+    const answer = state.answers[item.id] || "";
+    const textId = `q-${item.id}`;
+    const remarkId = `r-${item.id}`;
+    const expiryId = `e-${item.id}`;
+    const expiryCell = hasExpiryColumn
+      ? `<div class="item-expiry-cell">${
+          requiresExpiry(item)
+            ? `<label class="item-expiry-label" for="${expiryId}">Date of expiry</label>
+               <input class="input expiry-input" type="date" id="${expiryId}" data-expiry-id="${escapeHtml(
+                item.id
+              )}" value="${escapeHtml(state.expiry[item.id] || "")}" aria-label="Date of expiry for checkpoint ${
+                item.n
+              }">`
+            : '<span class="expiry-empty" aria-hidden="true">—</span>'
+        }</div>`
+      : "";
+    return `
+      <article class="item" data-id="${escapeHtml(item.id)}">
+        <div class="item-main">
+          <div class="item-title-row">
+            <span class="item-num" aria-hidden="true">${String(item.n).padStart(2, "0")}</span>
+            <p class="item-text" id="${textId}">${escapeHtml(item.text)}</p>
+          </div>
+          ${
+            item.detail
+              ? `<p class="item-detail"><span class="item-detail-label">Sub-check</span>${escapeHtml(
+                  item.detail
+                )}</p>`
+              : ""
+          }
+          <div class="item-tags">${itemTagsHtml(item)}</div>
+        </div>
+        <div class="answer-cell">
+          <div class="answer" role="group" aria-labelledby="${textId}">
+            <button type="button" class="mark mark-yes" data-answer="yes" data-item-id="${escapeHtml(
+              item.id
+            )}" aria-pressed="${answer === "yes"}">
+              ${ICONS.check}<span>Yes</span>
+            </button>
+            <button type="button" class="mark mark-no" data-answer="no" data-item-id="${escapeHtml(
+              item.id
+            )}" aria-pressed="${answer === "no"}">
+              ${ICONS.x}<span>No</span>
+            </button>
+          </div>
+        </div>
+        <div class="item-notes">
+          <label class="sr-only" for="${remarkId}">Remarks for checkpoint ${item.n}</label>
+          <textarea class="remark" id="${remarkId}" rows="1" data-remark-id="${escapeHtml(
+            item.id
+          )}" placeholder="Need a Detailed Remark">${escapeHtml(state.remarks[item.id] || "")}</textarea>
+          ${photosHtml(item.id)}
+        </div>
+        ${expiryCell}
+      </article>`;
+  }
+
   function renderSheet() {
     const sheet = currentSheet();
     const stats = sheetStats(sheet);
     const nextSheet = DATA.sheets[sheet.index + 1] || null;
+    const hasExpiryColumn = sheetHasExpiryColumn(sheet);
     const sectionHtml = sheet.sections
       .map((section, sectionIndex) => {
-        const itemHtml = section.items
-          .map((item) => {
-            const answer = state.answers[item.id] || "";
-            const textId = `q-${item.id}`;
-            const remarkId = `r-${item.id}`;
-            const expiryId = `e-${item.id}`;
-            return `
-              <article class="item" data-id="${escapeHtml(item.id)}">
-                <div class="item-num" aria-hidden="true">${String(item.n).padStart(2, "0")}</div>
-                <div class="item-main">
-                  ${item.context ? `<p class="item-context">${escapeHtml(item.context)}</p>` : ""}
-                  <p class="item-text" id="${textId}">${escapeHtml(item.text)}</p>
-                  ${
-                    item.detail
-                      ? `<p class="item-detail"><span class="item-detail-label">Sub-check</span>${escapeHtml(
-                          item.detail
-                        )}</p>`
-                      : ""
-                  }
-                  <div class="item-tags">${itemTagsHtml(item)}</div>
-                  ${
-                    requiresExpiry(item)
-                      ? `<div class="item-expiry">
-                    <label class="item-expiry-label" for="${expiryId}">Date of expiry</label>
-                    <input class="input expiry-input" type="date" id="${expiryId}" data-expiry-id="${escapeHtml(
-                        item.id
-                      )}" value="${escapeHtml(state.expiry[item.id] || "")}">
-                  </div>`
-                      : ""
-                  }
-                </div>
-                <div class="answer" role="group" aria-labelledby="${textId}">
-                  <button type="button" class="mark mark-yes" data-answer="yes" data-item-id="${escapeHtml(
-                    item.id
-                  )}" aria-pressed="${answer === "yes"}">
-                    ${ICONS.check}<span>Yes</span>
-                  </button>
-                  <button type="button" class="mark mark-no" data-answer="no" data-item-id="${escapeHtml(
-                    item.id
-                  )}" aria-pressed="${answer === "no"}">
-                    ${ICONS.x}<span>No</span>
-                  </button>
-                </div>
-                <div class="item-notes">
-                  <label class="sr-only" for="${remarkId}">Remarks for checkpoint ${item.n}</label>
-                  <textarea class="remark" id="${remarkId}" rows="1" data-remark-id="${escapeHtml(
-                    item.id
-                  )}" placeholder="Need a Detailed Remark">${escapeHtml(state.remarks[item.id] || "")}</textarea>
-                  ${photosHtml(item.id)}
-                </div>
-              </article>`;
+        const hasSectionBar = sheet.id === "ops";
+        const sectionTitleId = `sec-${sheet.id}-${sectionIndex}`;
+        const groupHtml = sectionGroups(sheet, section)
+          .map((group) => {
+            const headingTag = hasSectionBar ? "h4" : "h3";
+            const headingId = hasSectionBar ? "" : ` id="${sectionTitleId}"`;
+            const headingCell = `<div class="item-group-head" style="grid-row: span ${group.items.length}">
+                <span class="item-group-kicker">Heading</span>
+                <${headingTag}${headingId}>${escapeHtml(group.heading)}</${headingTag}>
+                <span class="item-group-count">${group.items.length} ${
+                  group.items.length === 1 ? "checkpoint" : "checkpoints"
+                }</span>
+              </div>`;
+            return headingCell + group.items.map((item) => itemMarkup(item, hasExpiryColumn)).join("");
           })
           .join("");
         return `
-          <section class="check-section" aria-labelledby="sec-${sheet.id}-${sectionIndex}">
-            <div class="section-bar">
-              <h3 class="section-title" id="sec-${sheet.id}-${sectionIndex}">
+          <section class="check-section${hasSectionBar ? "" : " is-flat"}" aria-labelledby="${sectionTitleId}">
+            ${
+              hasSectionBar
+                ? `<div class="section-bar">
+              <h3 class="section-title" id="${sectionTitleId}">
                 ${escapeHtml(section.title)}${
                   section.subtitle ? `<span class="section-sub">${escapeHtml(section.subtitle)}</span>` : ""
                 }
@@ -6117,11 +6276,22 @@ window.__CHECKLIST_DATA__ = {
               <span class="section-count">${section.items.length} ${
                 section.items.length === 1 ? "checkpoint" : "checkpoints"
               }</span>
-            </div>
-            <div class="items">${itemHtml}</div>
+            </div>`
+                : ""
+            }
+            <div class="items${hasExpiryColumn ? " has-expiry" : ""}">${groupHtml}</div>
           </section>`;
       })
       .join("");
+    const checklistHead = `<div class="checklist-head${
+      hasExpiryColumn ? " has-expiry" : ""
+    }" aria-hidden="true">
+      <span>Heading</span>
+      <span>Sub category</span>
+      <span>Result</span>
+      <span>Remark</span>
+      ${hasExpiryColumn ? "<span>Date of expiry</span>" : ""}
+    </div>`;
 
     const showCategoryHint =
       sheet.id === "infra" && !["A", "B", "C", "NA"].includes(state.category);
@@ -6154,6 +6324,7 @@ window.__CHECKLIST_DATA__ = {
         <div class="sheet-head-side" id="sheet-progress"></div>
       </header>
       ${categoryHint}
+      ${checklistHead}
       ${sectionHtml}
       ${noteHtml}
       <div class="sheet-end">
