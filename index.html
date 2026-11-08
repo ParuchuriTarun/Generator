@@ -2407,21 +2407,6 @@ a {
   line-height: 1.45;
 }
 
-.pp-statline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5mm 5mm;
-  padding-bottom: 3mm;
-  color: var(--muted);
-  font-size: 6.8pt;
-  font-variant-numeric: tabular-nums;
-}
-
-.pp-statline strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-
 .pp-sheet-note {
   margin: 0 0 3mm;
   padding: 1.5mm 2mm;
@@ -7489,12 +7474,6 @@ window.__CHECKLIST_DATA__ = {
             <span class="pp-total">${sheet.total} checkpoints</span>
           </div>
           <p class="pp-intro">${escapeHtml(sheet.intro)}</p>
-          <div class="pp-statline">
-            <span><strong>${stats.yes}</strong> yes</span>
-            <span><strong>${stats.no}</strong> no</span>
-            <span><strong>${stats.pending}</strong> pending</span>
-            <span><strong>${stats.photos}</strong> photos</span>
-          </div>
           ${
             sheet.note
               ? `<p class="pp-sheet-note"><strong>Note</strong> ${escapeHtml(sheet.note)}</p>`
